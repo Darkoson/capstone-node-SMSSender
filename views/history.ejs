@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <title>History</title>
+</head>
+<body>
+    <h1>History</h1>
+    <a href="/">Home</a>
+
+
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Message</th>
+            <th>Recipient</th>
+            <th>Date</th>
+            <th colspan="2">Action</th>
+            
+        </tr>
+
+        <%
+        if(allMessages.length!=0){
+        let i=1;
+        allMessages.forEach(message => {
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=message.message %></td>
+            <td><%=message.recipient %></td>
+            <td><%=message.date_created %></td>
+            <td><a href="/message/<%= message.msg_id%>"><button>Resend</button></a></td>
+            <td><a href="/messages/<%= message.msg_id%>/edit"><button>Edit</button</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    <!-- <ul>
+        <% allMessages.forEach(message => {%>
+            <li><%= message.message %></li>
+        <%}); %>
+    </ul> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
